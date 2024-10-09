@@ -151,6 +151,3 @@ SELECT COUNT(CustomerID), Country
 FROM Customers
 GROUP BY Country
 HAVING COUNT(CustomerID) > 5; -- Filtrace seskupených dat
-
-
--- francky kupec samo je zmaten
