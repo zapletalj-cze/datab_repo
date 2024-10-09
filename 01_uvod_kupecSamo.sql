@@ -89,6 +89,10 @@ ORDER BY label_y DESC, region_un, name_long; -- Řazení s podmínkou
 -- Přímý výpočet
 SELECT 1 + 1 AS "1+1"; -- Výpočet a pojmenování sloupce
 
+SELECT name_long, pop_est/1000000 as pop, geom
+FROM countries
+WHERE pop > 10 and GDP < 10000
+
 -- CASE na hodnoty
 SELECT name_long,
 CASE att
@@ -115,6 +119,17 @@ SELECT atribut FROM db WHERE atribut IS NULL; -- Záznamy s NULL hodnotou
 SELECT
 ISNULL(att, 'Nahradni hodnota'), -- Náhrada za NULL
 ISNULL(NULL, 'Nahradni hodnota');
+
+
+--Alternativa nahrazovani
+SELECT COALESCE(name_alt, 'cokolvek') AS Result, name, name_alt
+FROM countries;
+
+
+SELECT NAME_LONG, name_alt
+FROM countries
+WHERE NAME_ALT IS NULL;
+
 
 -- Výpis unikátních hodnot
 SELECT DISTINCT region_un
