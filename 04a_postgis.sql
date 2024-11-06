@@ -45,5 +45,13 @@ CREATE TABLE body (
     X DOUBLE PRECISION,
     Y DOUBLE PRECISION
 );
-
+-- Step 2: Copy values from CSV file to the table
 \copy body (id, x, y) FROM 'J:/datab_repo/data/04_postgis/body_4326.csv' DELIMITER ',' CSV HEADER;
+
+-- Step 3: Add a geometry column to the table
+-- SET geometry from coordinates loaded from CSV
+ALTER TABLE body
+ADD COLUMN geom GEOMETRY(POINT, 4326);
+
+UPDATE body
+SET geom = ST_SetSRID(ST_MakePoint(x, y), 4326);

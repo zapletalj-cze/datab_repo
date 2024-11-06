@@ -1,0 +1,86 @@
+-- Create two points, buffer them and return them as a single row
+
+SELECT 1 AS id, 
+St_Union(
+	St_Buffer(
+		ST_GeomFromText('POINT(1 1)'), 2), 
+	St_Buffer
+		(ST_GeomFromText('POINT(3 0)'), 2)) 
+as geom
+
+
+-- Vytvořte obalovou zónu o velikosti 2 jednotek okolo těchto pěti definovaných bodů"""
+/*
+'POINT(2 4)'
+'POINT(6 4)'
+'POINT(10 4)'
+'POINT(4 2)'
+'POINT(8 2)'
+*/
+
+SELECT 1 AS id, 
+St_Union(
+    ARRAY[
+        St_Buffer(ST_GeomFromText('POINT(2 4)'), 2),
+        St_Buffer(ST_GeomFromText('POINT(6 4)'), 2),
+        St_Buffer(ST_GeomFromText('POINT(10 4)'), 2),
+		St_Buffer(ST_GeomFromText('POINT(4 2)'), 2),
+        St_Buffer(ST_GeomFromText('POINT(8 2)'), 2)
+	]) 
+	as geom
+
+
+-- Sjednocení všech geometrií, 
+Průnik geom(1, 2, 3) a geom(4, 5)
+SELECT 1 AS id, 
+ST_Intersection(
+	St_Union(
+		ARRAY[
+			St_Buffer(ST_GeomFromText('POINT(2 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(6 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(10 4)'), 2)]),
+			
+	St_Union(
+		St_Buffer(ST_GeomFromText('POINT(4 2)'), 2),
+		St_Buffer(ST_GeomFromText('POINT(8 2)'), 2)
+		)) 
+	as geom
+
+
+-- Rozdíl geom(1, 2, 3) a geom(4, 5), 
+SELECT 1 AS id, 
+ST_Difference(
+	St_Union(
+		ARRAY[
+			St_Buffer(ST_GeomFromText('POINT(2 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(6 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(10 4)'), 2)]),
+			
+	St_Union(
+		St_Buffer(ST_GeomFromText('POINT(4 2)'), 2),
+		St_Buffer(ST_GeomFromText('POINT(8 2)'), 2)
+		)) 
+	as geom
+
+
+-- Symetrický rozdíl geom(1, 2, 3) a geom(4, 5) dříve vytvořených pěti geometrií (úkol 2)
+SELECT 1 AS id, 
+St_Symdifference(
+	St_Union(
+		ARRAY[
+			St_Buffer(ST_GeomFromText('POINT(2 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(6 4)'), 2),
+			St_Buffer(ST_GeomFromText('POINT(10 4)'), 2)]),
+			
+	St_Union(
+		St_Buffer(ST_GeomFromText('POINT(4 2)'), 2),
+		St_Buffer(ST_GeomFromText('POINT(8 2)'), 2)
+		)) 
+	as geom
+
+
+
+
+
+
+
