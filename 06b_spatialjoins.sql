@@ -212,4 +212,10 @@ AS kraje
 ON st_contains(kraje.geom, reky.geom);
 
 
-
+-- Vypis hlavni mesta statu, kterymi proteka Dunaj
+SELECT zeme.name, mesto.name, mesto.geom
+FROM public.countries as zeme
+JOIN (SELECT * FROM public.rivers_lake_centerlines WHERE name = 'Donau') AS dunaj
+ON st_intersects(zeme.geom, dunaj.geom)
+JOIN public.populated_places as mesto
+ON ST_Intersects(zeme.geom, mesto.geom
