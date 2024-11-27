@@ -42,7 +42,15 @@ def connect():
         cur.execute('SELECT version();')
         db_version = cur.fetchone()
         print(f'PostgreSQL database version: {db_version[0]}')
-        cur.execute('SELECT COUNT(*) FROM ruian.obce;')
+        # PRIKAZ 1
+        # cur.execute('SELECT COUNT(*) FROM ruian.obce;')
+
+        # # PRIKAZ 2
+        # cur.execute('SELECT GEOM FROM RUIAN.VUSC WHERE NAZEV = \'Jihočeský kraj\';')
+
+        # PRIKAZ 3
+        cur.execute('SELECT COUNT(*) FROM ruian.obce WHERE ST_INTERSECTS(geom, '
+                    '(SELECT ST_Boundary(geom) FROM ruian.vusc WHERE nazev = \'Jihočeský kraj\'));')
 
         # vytiskni PostgreSQL DB verzi na standardni vystup
         db_version = cur.fetchone()

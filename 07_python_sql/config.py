@@ -18,3 +18,4 @@ def config(filename='database.ini', section='postgresql'):
         raise Exception('Sekce {0} nenalezena v souboru {1}'.format(section, filename))
 
     return db
+
