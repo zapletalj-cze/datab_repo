@@ -57,6 +57,36 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+/*
+UKOL 04 translace kodu v CLC18
+*/
 
+CREATE FUNCTION clc2lc1(input db )
+RETURNS integer AS $$
+BEGIN
+    UPDATE clc_18_cz_lc1
+    SET lc1 = CASE 
+        WHEN code_18 = '142' THEN '14'
+        WHEN code_18 LIKE '1%' THEN '1'
+        WHEN code_18 LIKE '2%' THEN '2'
+        WHEN code_18 LIKE '3%' THEN '3'
+        WHEN code_18 LIKE '4%' THEN '4'
+        WHEN code_18 LIKE '5%' THEN '5'
+        ELSE '0'
+    END;
+
+    -- RETURN (
+    --     SELECT COUNT(*) 
+    --     FROM clc_18_cz_lc1
+    --     WHERE code_18 = '142'
+    -- );
+END;
+$$ LANGUAGE plpgsql;
+
+FOR item IN SELECT *
+from cviceni7.clc18_cz_3035
+LOOP
+    PERFORM clc2lc1(item.code_18);
+END LOOP;
 
 
