@@ -30,8 +30,6 @@ geom GEOMETRY(Point, 4326)
 );
 
 
-
-
 /* 
 KROK 2
 Vytvorime si tabulku pro lookup mezi kodem a nazvem land cover
@@ -40,9 +38,6 @@ CREATE TABLE land_cover_types (
  LC1 VARCHAR(5) PRIMARY KEY,
  description TEXT
 );
-
-
-
 
 /*
 TENTO KROK ZATIM PRESKOCIME
@@ -64,8 +59,6 @@ geom GEOMETRY(Point, 4326)
 -- C:\Users\zapletajaku\TEMP\postgresql15postgis3_cmd_win\postgresql15postgis3_win\bin> .\psql -d pdbzapletal -h osgeo.natur.cuni.cz -U zapletal
 
 
-
-
 /*
 KROK 4
 Do staging_lucas_points nacteme data z csv souboru*/
@@ -79,8 +72,6 @@ FROM 'J:\lukas_data\lucas_data.csv' WITH CSV HEADER;
 
 -- TAKHLE TO FUNGUJE
 \copy lucas.staging_lucas_points ("point_id", "gps_lat", "gps_long", "lc1", "lc1_perc", "parcel_area_ha") FROM 'J:/lukas_data/lucas_data_filter.csv' DELIMITER ',' CSV HEADER;
-
-
 
 
 -- KROK 5

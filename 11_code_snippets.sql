@@ -1,7 +1,7 @@
 -- Create PostgreSQL database and enable PostGIS extension
 -- Command line instructions
-createdb -h osgeo.natur.cuni.cz -U annab T2brazdova;
-psql -d T2brazdova -h osgeo.natur.cuni.cz -U annab;
+createdb -h osgeo.natur.cuni.cz -U zapletal pdb_zapletal;
+psql -d pdb_zapletal -h osgeo.natur.cuni.cz -U zapletal;
 CREATE EXTENSION postgis;
 
 -- Convert shapefiles into SQL files
@@ -9,8 +9,8 @@ shp2pgsql -s 4326 J:\databaze\test_2_geodata\countries_cities_shp\countries.shp 
 shp2pgsql -s 4326 J:\databaze\test_2_geodata\countries_cities_shp\cities.shp public.cities > cities.sql;
 
 -- Load SQL files into the database
-psql -U annab -d T2brazdova -h osgeo.natur.cuni.cz -a -f countries.sql;
-psql -U annab -d T2brazdova -h osgeo.natur.cuni.cz -a -f cities.sql;
+psql -U annab -d pdbzapletal -h osgeo.natur.cuni.cz -a -f countries.sql;
+psql -U annab -d pdbzapletal -h osgeo.natur.cuni.cz -a -f cities.sql;
 
 -- Create temporary tables for cities and countries
 CREATE TABLE tmp_cities (
@@ -122,5 +122,5 @@ SELECT
     ) AS distance_km;
 
 -- Export European countries and cities as shapefiles
-pgsql2shp -u annab -h osgeo.natur.cuni.cz -P gkDPZ23 -f J:\databaze\eu_countries.shp T2brazdova public.eu_countries;
-pgsql2shp -u annab -h osgeo.natur.cuni.cz -P gkDPZ23 -f J:\databaze\eu_cities.shp T2brazdova public.eu_cities;
+pgsql2shp -u zapletal -h osgeo.natur.cuni.cz -P gkd2024 -f J:\databaze\eu_countries.shp zapletal public.eu_countries;
+pgsql2shp -u zapletal -h osgeo.natur.cuni.cz -P gkd2024 -f J:\databaze\eu_cities.shp zapletal public.eu_cities;
