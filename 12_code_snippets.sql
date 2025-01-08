@@ -1,3 +1,7 @@
+-- TOHLE MUZE POMOCT
+-- https://postgis.net/docs/using_postgis_query.html
+
+
 -- Create PostgreSQL database and enable PostGIS extension
 -- Command line instructions
 createdb -h osgeo.natur.cuni.cz -U zapletal pdb_zapletal;
