@@ -14,6 +14,8 @@ SELECT COUNT(*), ROUND(COUNT(*)::numeric / (SELECT COUNT(*) FROM zapocet.jk_poza
 FROM zapocet.jk_pozarni_stanice
 WHERE ST_Within(geom, (SELECT geom FROM zapocet.jk_okresy WHERE nazev = 'Písek'));
 
+
+
 SELECT id, osm_id, geom
 FROM zapocet.jk_pozarni_stanice
 WHERE ST_Within(geom, (SELECT geom FROM zapocet.jk_okresy WHERE nazev = 'Písek'));
