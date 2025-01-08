@@ -19,8 +19,6 @@ ALTER TABLE zapocet.tmp_stanice
 ADD COLUMN jk_pozarni_stanice BOOLEAN;
 
 
-
-
 -- update column
 UPDATE zapocet.tmp_stanice
 SET jk_pozarni_stanice = TRUE
@@ -32,6 +30,8 @@ INSERT INTO zapocet.jk_pozarni_stanice (id, osm_id, geom)
 SELECT id, osm_id, geom
 FROM zapocet.tmp_stanice
 WHERE jk_pozarni_stanice = TRUE;
+
+
 
 
 
