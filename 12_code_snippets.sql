@@ -13,8 +13,8 @@ shp2pgsql -s 4326 J:\databaze\test_2_geodata\countries_cities_shp\countries.shp 
 shp2pgsql -s 4326 J:\databaze\test_2_geodata\countries_cities_shp\cities.shp public.cities > cities.sql;
 
 -- Load SQL files into the database
-psql -U annab -d pdbzapletal -h osgeo.natur.cuni.cz -a -f countries.sql;
-psql -U annab -d pdbzapletal -h osgeo.natur.cuni.cz -a -f cities.sql;
+psql -U zapletal -d pdbzapletal -h osgeo.natur.cuni.cz -a -f countries.sql;
+psql -U zapletal -d pdbzapletal -h osgeo.natur.cuni.cz -a -f cities.sql;
 
 -- Create temporary tables for cities and countries
 CREATE TABLE tmp_cities (
